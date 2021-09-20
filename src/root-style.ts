@@ -17,5 +17,11 @@ button, input, a{
   cursor: pointer;
   outline: none;
 }
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
 `
 export default GlobalStyled

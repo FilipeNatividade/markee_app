@@ -59,3 +59,35 @@ export const ButtonAdd = styled.button`${({ theme }) => css`
   margin: 3.2rem auto;
   width: 100%;
 `}`
+
+export const List = styled.li`${({ theme }) => css`
+  align-items: center;
+  border-radius: .5rem;
+  display: flex;
+  font-size: 1.6rem;
+  height: 3.7rem;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  width: 100%;
+    &:hover{
+      background-color: ${theme.colors.lightBlack};
+      a{
+        color: ${theme.colors.white}
+      }
+      button{
+        visibility: visible;
+      }
+    }
+  `}
+`
+
+export const Anchor = styled.a`
+  color: rgba(255, 255, 255, 0.6);
+
+`
+
+export const DeleteButton = styled.button`
+visibility:hidden;
+background-color:transparent;
+color: #fff;
+`
