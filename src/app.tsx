@@ -1,14 +1,14 @@
-import styled, { css } from 'styled-components/macro'
-
-const Title = styled.h1`${({ theme }) => css`
-background-color: ${theme.colors.black};
-color: ${theme.colors.primary};
-
-`}`
+import { ThemeProvider } from 'styled-components'
+import { theme } from 'resources/theme'
+import GlobalStyled from 'root-style'
+import Asidebar from 'Components/sidebar'
 
 const App = () => {
   return (
-    <Title>App</Title>
+    <ThemeProvider theme={theme}>
+      <GlobalStyled />
+      <Asidebar />
+    </ThemeProvider>
   )
 }
 export default App

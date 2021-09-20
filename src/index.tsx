@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
-import Root from 'root'
+import App from 'app'
 
 ReactDOM.render(
   <StrictMode>
-    <Root />
+    <App />
   </StrictMode>,
   document.getElementById('root'),
 )
