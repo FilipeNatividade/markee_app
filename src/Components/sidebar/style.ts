@@ -94,7 +94,6 @@ export const List = styled.li`${({ theme }) => css`
 
 export const Anchor = styled.a`
   color: rgba(255, 255, 255, 0.6);
-
 `
 
 export const DeleteButton = styled.button`

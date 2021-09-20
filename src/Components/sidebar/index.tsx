@@ -28,10 +28,9 @@ const Sidebar = () => {
       <ul>
         {
           files.map(item => (
-            item.active ?
-              <List key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><DotSingle className='iconDot' /></List>
-              :
-              <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
+            item.active
+              ? <List key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><DotSingle className='iconDot' /></List>
+              : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
           ))
         }
       </ul>
