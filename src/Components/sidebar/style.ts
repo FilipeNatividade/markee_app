@@ -69,6 +69,17 @@ export const List = styled.li`${({ theme }) => css`
   justify-content: space-between;
   padding: 0 1.5rem;
   width: 100%;
+  .iconFile{
+    height: 2rem;
+    margin-right: 1rem;
+  }
+  .iconFileActive{
+    color: ${theme.colors.primary};
+  }
+  .iconDot{
+    height: 3rem;
+    margin-right: -1rem;
+  }
     &:hover{
       background-color: ${theme.colors.lightBlack};
       a{

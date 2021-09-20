@@ -1,3 +1,7 @@
+import { File } from '@styled-icons/boxicons-regular/File'
+import { DotSingle } from '@styled-icons/entypo/DotSingle'
+import { files } from 'resources/file-list'
+
 import {
   Aside,
   Title,
@@ -9,56 +13,10 @@ import {
   ButtonAdd,
   List,
   Anchor,
-  DeleteButton
+  DeleteButton,
 } from './style'
 
 const Sidebar = () => {
-  type TypeFile = {
-    id: string
-    name: string
-    content: string
-    active: boolean
-    status: 'editing' | 'saving' | 'saved'
-  }
-
-  const files: TypeFile[] = [
-    {
-      id: '0',
-      name: 'README.me',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-    {
-      id: '1',
-      name: 'CONTRIBUTING.md',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-    {
-      id: '2',
-      name: 'LICENSE.md',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-    {
-      id: '3',
-      name: 'Links.md',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-    {
-      id: '4',
-      name: 'roadmap.md',
-      content: '',
-      active: true,
-      status: 'saved',
-    },
-  ]
-
   return (
     <Aside>
       <Header>
@@ -70,7 +28,10 @@ const Sidebar = () => {
       <ul>
         {
           files.map(item => (
-            <List key={item.id}><Anchor href='/'>{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
+            item.active ?
+              <List key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><DotSingle className='iconDot' /></List>
+              :
+              <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
           ))
         }
       </ul>
