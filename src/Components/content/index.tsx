@@ -15,13 +15,13 @@ const Content = () => {
     <Container>
       <Header>
         <File className='iconFile' />
-        <InputTitle placeholder='CONTRIBUT|' />
+        <InputTitle placeholder='Sem título' />
       </Header>
       <MainContainer>
-        <TexteareaContainer placeholder={files[4].content}>
+        <TexteareaContainer placeholder='Digite aqui seu markedown'>
         </TexteareaContainer>
         <MarkedownContainer>
-          {files[4].content}
+
         </MarkedownContainer>
       </MainContainer>
     </Container>

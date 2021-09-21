@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from 'resources/theme'
-import GlobalStyled from 'root-style'
+import GlobalStyled from 'app-style'
 import Asidebar from 'Components/sidebar'
 import Content from 'Components/content'
 
