@@ -25,7 +25,6 @@ import('highlight.js').then(hljs => {
   })
 })
 
-
 const Content = () => {
   const [content, setContent] = useState('')
 

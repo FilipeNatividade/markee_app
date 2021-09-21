@@ -1,5 +1,5 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { files } from 'resources/file-list'
+import { useState } from 'react'
 
 import {
   Container,
@@ -15,8 +15,18 @@ import {
   DeleteButton,
 } from './style'
 
+type TypeFile = {
+  id: string
+  name: string
+  content: string
+  active: boolean
+  status: string
+}
+
 const Sidebar = () => {
   let currentStatus = ''
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [files, setFiles] = useState<TypeFile[]>([])
 
   const getStatus = (status: string) => {
     if (status === 'saved') {
@@ -28,6 +38,10 @@ const Sidebar = () => {
     }
   }
 
+  const createNewFile = () => {
+
+  }
+
   return (
     <Container>
       <Header>
@@ -35,7 +49,7 @@ const Sidebar = () => {
         <Title>markee<span>.</span></Title>
       </Header>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
-      <ButtonAdd>+ Adicionar arquivo</ButtonAdd>
+      <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>
       <ul>
         {
           files.map(item => (
