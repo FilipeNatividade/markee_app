@@ -1,5 +1,4 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { DotSingle } from '@styled-icons/entypo/DotSingle'
 import { files } from 'resources/file-list'
 
 import {
@@ -17,10 +16,22 @@ import {
 } from './style'
 
 const Sidebar = () => {
+  let currentStatus = ''
+
+  const getStatus = (status: string) => {
+    if (status === 'saved') {
+      currentStatus = './images/check.svg'
+    } else if (status === 'saving') {
+      currentStatus = './images/loading.svg'
+    } else if (status === 'editing') {
+      currentStatus = './images/dot.svg'
+    }
+  }
+
   return (
     <Container>
       <Header>
-        <ImageHeader src='logo192.png' alt='logo' />
+        <ImageHeader src='./images/logo192.png' alt='logo' />
         <Title>markee<span>.</span></Title>
       </Header>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
@@ -28,8 +39,10 @@ const Sidebar = () => {
       <ul>
         {
           files.map(item => (
+            // eslint-disable-next-line no-sequences
+            getStatus(item.status),
             item.active
-              ? <List key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><DotSingle className='iconDot' /></List>
+              ? <List className='active' key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
               : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
           ))
         }

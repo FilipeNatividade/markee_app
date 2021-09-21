@@ -1,11 +1,24 @@
-import styled, { css } from 'styled-components/macro'
+import styled, { css, keyframes } from 'styled-components/macro'
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`
 
 export const Container = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
   height: 100vh;
   padding: 0 3.2rem;
-  width: 35rem;
+  width: 332px;
+  .active{
+    background-color: ${theme.colors.lightBlack};
+  }
 `}`
 
 export const Header = styled.header`
@@ -76,10 +89,6 @@ export const List = styled.li`${({ theme }) => css`
   .iconFileActive{
     color: ${theme.colors.primary};
   }
-  .iconDot{
-    height: 3rem;
-    margin-right: -1rem;
-  }
     &:hover{
       background-color: ${theme.colors.lightBlack};
       a{
@@ -89,15 +98,21 @@ export const List = styled.li`${({ theme }) => css`
         visibility: visible;
       }
     }
-  `}
-`
+  .saving{
+    margin-right: -1rem;
+    display: inline-block;
+    animation: ${rotate} 1s linear infinite;
+    padding: 2rem 1rem;
+    font-size: 1.2rem;
+  }
+`}`
 
 export const Anchor = styled.a`
   color: rgba(255, 255, 255, 0.6);
 `
 
 export const DeleteButton = styled.button`
-visibility:hidden;
-background-color:transparent;
-color: #fff;
+  visibility:hidden;
+  background-color:transparent;
+  color: #fff;
 `
