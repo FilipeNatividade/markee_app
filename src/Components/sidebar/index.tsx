@@ -3,7 +3,7 @@ import { DotSingle } from '@styled-icons/entypo/DotSingle'
 import { files } from 'resources/file-list'
 
 import {
-  Aside,
+  Container,
   Title,
   Header,
   ImageHeader,
@@ -18,7 +18,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <Aside>
+    <Container>
       <Header>
         <ImageHeader src='logo192.png' alt='logo' />
         <Title>markee<span>.</span></Title>
@@ -34,7 +34,7 @@ const Sidebar = () => {
           ))
         }
       </ul>
-    </Aside>
+    </Container>
   )
 }
 export default Sidebar

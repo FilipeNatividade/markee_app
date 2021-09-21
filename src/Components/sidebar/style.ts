@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components/macro'
 
-export const Aside = styled.aside`${({ theme }) => css`
+export const Container = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
   height: 100vh;
   padding: 0 3.2rem;
-  width: 332px;
+  width: 35rem;
 `}`
 
 export const Header = styled.header`
