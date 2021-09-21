@@ -43,7 +43,7 @@ const Sidebar = () => {
             getStatus(item.status),
             item.active
               ? <List className='active' key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
-              : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
+              : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }
       </ul>

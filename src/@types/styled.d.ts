@@ -1,4 +1,4 @@
-declare module 'styled-components' {
+export declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       black: string
@@ -10,5 +10,3 @@ declare module 'styled-components' {
     }
   }
 }
-
-export { }
