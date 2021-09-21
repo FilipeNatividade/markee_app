@@ -1,5 +1,4 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { files } from 'resources/file-list'
 
 import {
   Container,
@@ -15,14 +14,11 @@ const Content = () => {
     <Container>
       <Header>
         <File className='iconFile' />
-        <InputTitle placeholder='CONTRIBUT|' />
+        <InputTitle placeholder='Sem título' />
       </Header>
       <MainContainer>
-        <TexteareaContainer placeholder={files[4].content}>
-        </TexteareaContainer>
-        <MarkedownContainer>
-          {files[4].content}
-        </MarkedownContainer>
+        <TexteareaContainer placeholder='Digite aqui seu markedown' />
+        <MarkedownContainer />
       </MainContainer>
     </Container>
   )
