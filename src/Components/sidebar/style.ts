@@ -80,6 +80,7 @@ export const List = styled.li`${({ theme }) => css`
   font-size: 1.6rem;
   height: 3.7rem;
   justify-content: space-between;
+  list-style: none;
   padding: 0 1.5rem;
   width: 100%;
   .iconFile{

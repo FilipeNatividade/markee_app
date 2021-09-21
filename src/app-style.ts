@@ -20,8 +20,6 @@ button, input, a{
 a{
   text-decoration: none;
 }
-li{
-  list-style: none;
-}
+
 `
 export default GlobalStyled
