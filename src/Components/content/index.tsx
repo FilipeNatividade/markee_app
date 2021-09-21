@@ -34,8 +34,8 @@ const Content = () => {
           value={content}
           onChange={handleChange}
         />
+        <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(content) }} />
       </MainContainer>
-      <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(content) }} />
     </Container>
   )
 }
