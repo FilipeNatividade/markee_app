@@ -1,7 +1,5 @@
 import { useState, ChangeEvent } from 'react'
 import marked from 'marked'
-import highlight from 'highlight.js'
-import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
 
 import {
@@ -12,8 +10,6 @@ import {
   TexteareaContainer,
   MarkedownContainer,
 } from './style'
-
-highlight.highlightAll()
 
 const Content = () => {
   const [content, setContent] = useState('')
@@ -34,8 +30,8 @@ const Content = () => {
           value={content}
           onChange={handleChange}
         />
-        <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(content) }} />
       </MainContainer>
+      <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(content) }} />
     </Container>
   )
 }
