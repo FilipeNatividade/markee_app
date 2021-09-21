@@ -36,7 +36,8 @@ export const MainContainer = styled.main`
 
 export const TexteareaContainer = styled.textarea`
   border: none;
-  font-size: 'Incosolata';
+  font-family: 'Incosolata';
+  font-size: 1.8rem;
   resize: none;
   outline: none;
   width: 50%;
@@ -45,5 +46,7 @@ export const TexteareaContainer = styled.textarea`
 export const MarkedownContainer = styled.div`${({ theme }) => css`
   border-left:.2rem solid ${theme.colors.gray} ;
   color: ${theme.colors.black};
+  font-size: 1.6rem;
   padding-left: 3.2rem;
+  width: 50%;
 `}`
