@@ -18,8 +18,7 @@ const Content = () => {
         <InputTitle placeholder='CONTRIBUT|' />
       </Header>
       <MainContainer>
-        <TexteareaContainer placeholder={files[4].content}>
-        </TexteareaContainer>
+        <TexteareaContainer placeholder={files[4].content} />
         <MarkedownContainer>
           {files[4].content}
         </MarkedownContainer>
