@@ -40,6 +40,6 @@ export const files: TypeFile[] = [
     name: 'roadmap.md',
     content: '## Bootcamp Brainn Co. Lorem ipsum dolor sit amet simet',
     active: true,
-    status: 'saved',
+    status: 'editing',
   },
 ]
