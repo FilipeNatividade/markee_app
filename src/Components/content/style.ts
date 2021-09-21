@@ -36,7 +36,8 @@ export const MainContainer = styled.main`
 
 export const TexteareaContainer = styled.textarea`
   border: none;
-  font-size: 'Incosolata';
+  font-family: 'Incosolata';
+  font-size: 1.8rem;
   resize: none;
   outline: none;
   width: 50%;
