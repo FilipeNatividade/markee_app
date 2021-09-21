@@ -1,5 +1,4 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { files } from 'resources/file-list'
 
 import {
   Container,
@@ -18,11 +17,8 @@ const Content = () => {
         <InputTitle placeholder='Sem título' />
       </Header>
       <MainContainer>
-        <TexteareaContainer placeholder='Digite aqui seu markedown'>
-        </TexteareaContainer>
-        <MarkedownContainer>
-
-        </MarkedownContainer>
+        <TexteareaContainer placeholder='Digite aqui seu markedown' />
+        <MarkedownContainer />
       </MainContainer>
     </Container>
   )
