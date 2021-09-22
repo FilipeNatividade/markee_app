@@ -13,7 +13,7 @@ const rotate = keyframes`
 export const Container = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 32px;
   width: 335px;
   .active{

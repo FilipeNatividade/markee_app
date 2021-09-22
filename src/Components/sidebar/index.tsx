@@ -1,4 +1,5 @@
 import { File } from '@styled-icons/boxicons-regular/File'
+import { v4 as idv4 } from 'uuid'
 import { useState } from 'react'
 
 import {
@@ -25,7 +26,6 @@ type TypeFile = {
 
 const Sidebar = () => {
   let currentStatus = ''
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [files, setFiles] = useState<TypeFile[]>([])
 
   const getStatus = (status: string) => {
@@ -39,7 +39,18 @@ const Sidebar = () => {
   }
 
   const createNewFile = () => {
-
+    setFiles(files => files
+      .map(item => ({
+        ...item,
+        active: false,
+      }))
+      .concat({
+        id: idv4(),
+        name: 'Sem título',
+        content: '',
+        active: true,
+        status: 'saved',
+      }))
   }
 
   return (
