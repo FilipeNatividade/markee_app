@@ -1,6 +1,6 @@
+import { useState, RefObject } from 'react'
 import { File } from '@styled-icons/boxicons-regular/File'
 import { v4 as idv4 } from 'uuid'
-import { useState } from 'react'
 
 import {
   Container,
@@ -24,9 +24,13 @@ type TypeFile = {
   status: string
 }
 
-const Sidebar = () => {
-  let currentStatus = ''
+type SidebarProps = {
+  inputRef: RefObject<HTMLInputElement>
+}
+
+const Sidebar = ({ inputRef }: SidebarProps) => {
   const [files, setFiles] = useState<TypeFile[]>([])
+  let currentStatus = ''
 
   const getStatus = (status: string) => {
     if (status === 'saved') {
@@ -39,6 +43,7 @@ const Sidebar = () => {
   }
 
   const createNewFile = () => {
+    inputRef.current?.focus()
     setFiles(files => files
       .map(item => ({
         ...item,

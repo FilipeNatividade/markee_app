@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, RefObject } from 'react'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
@@ -25,7 +25,11 @@ import('highlight.js').then(hljs => {
   })
 })
 
-const Content = () => {
+type ContentRef = {
+  inputRef: RefObject<HTMLInputElement>
+}
+
+const Content = ({ inputRef }: ContentRef) => {
   const [content, setContent] = useState('')
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,7 +40,7 @@ const Content = () => {
     <Container>
       <Header>
         <File className='iconFile' />
-        <InputTitle placeholder='Sem título' />
+        <InputTitle placeholder='Sem título' ref={inputRef} />
       </Header>
       <MainContainer>
         <TexteareaContainer
