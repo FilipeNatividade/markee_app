@@ -1,6 +1,5 @@
 import { useState, ChangeEvent } from 'react'
 import marked from 'marked'
-import highlight from 'highlight.js'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
 
@@ -13,7 +12,18 @@ import {
   MarkedownContainer,
 } from './style'
 
-highlight.highlightAll()
+import('highlight.js').then(hljs => {
+  const h = hljs.default
+
+  marked.setOptions({
+    highlight: (code, language) => {
+      if (language && h.getLanguage(language)) {
+        return h.highlight(code, { language }).value
+      }
+      return h.highlightAuto(code).value
+    },
+  })
+})
 
 const Content = () => {
   const [content, setContent] = useState('')
