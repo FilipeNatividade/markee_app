@@ -1,5 +1,4 @@
-import { File } from '@styled-icons/boxicons-regular/File'
-import { files } from 'resources/file-list'
+// import { File } from '@styled-icons/boxicons-regular/File'
 
 import {
   Container,
@@ -10,23 +9,23 @@ import {
   ParagraphSubTitle,
   HRow,
   ButtonAdd,
-  List,
-  Anchor,
-  DeleteButton,
+  // List,
+  // Anchor,
+  // DeleteButton,
 } from './style'
 
 const Sidebar = () => {
-  let currentStatus = ''
+  // let currentStatus = ''
 
-  const getStatus = (status: string) => {
-    if (status === 'saved') {
-      currentStatus = './images/check.svg'
-    } else if (status === 'saving') {
-      currentStatus = './images/loading.svg'
-    } else if (status === 'editing') {
-      currentStatus = './images/dot.svg'
-    }
-  }
+  // const getStatus = (status: string) => {
+  //   if (status === 'saved') {
+  //     currentStatus = './images/check.svg'
+  //   } else if (status === 'saving') {
+  //     currentStatus = './images/loading.svg'
+  //   } else if (status === 'editing') {
+  //     currentStatus = './images/dot.svg'
+  //   }
+  // }
 
   return (
     <Container>
@@ -37,7 +36,7 @@ const Sidebar = () => {
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
       <ButtonAdd>+ Adicionar arquivo</ButtonAdd>
       <ul>
-        {
+        {/* {
           files.map(item => (
             // eslint-disable-next-line no-sequences
             getStatus(item.status),
@@ -45,7 +44,7 @@ const Sidebar = () => {
               ? <List className='active' key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
               : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton>X</DeleteButton></List>
           ))
-        }
+        } */}
       </ul>
     </Container>
   )
