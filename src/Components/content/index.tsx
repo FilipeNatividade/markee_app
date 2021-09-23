@@ -39,6 +39,7 @@ const Content = () => {
                 value={item.name}
                 onChange={updateFileName(item.id)}
                 ref={inputRef}
+                autoFocus
               />
             </Header>
             <MainContainer>
