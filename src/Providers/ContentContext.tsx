@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, RefObject, useRef, ReactNode, SetStateAction, Dispatch, useEffect } from 'react'
+import { createContext, useContext, useState, RefObject, useRef, ReactNode, SetStateAction, Dispatch, useEffect, ChangeEvent } from 'react'
 import { v4 as idv4 } from 'uuid'
 
 type TypeFile = {
@@ -8,7 +8,6 @@ type TypeFile = {
   active: boolean
   status: string
 }
-
 
 type TypeCreate = {
   files: TypeFile[]
@@ -21,6 +20,8 @@ type TypeCreate = {
   inputRef: RefObject<HTMLInputElement>
   selectFile: any
   deleteFile: any
+  updateFileName: any
+  updateFileContent: any
 }
 // arrumar esses dois type any
 
@@ -93,6 +94,34 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
       }))
   }
 
+  const updateFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    setFiles(files => files.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          name: e.target.value,
+          status: 'editing',
+        }
+      }
+
+      return item
+    }))
+  }
+
+  const updateFileContent = (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFiles(files => files.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          content: e.target.value,
+          status: 'editing',
+        }
+      }
+
+      return item
+    }))
+  }
+
   const selectFile = (id: string) => (event: MouseEvent) => {
     event.preventDefault()
 
@@ -120,6 +149,8 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
         inputRef,
         selectFile,
         deleteFile,
+        updateFileName,
+        updateFileContent,
       }}
     >
       {children}

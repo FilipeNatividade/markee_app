@@ -16,17 +16,17 @@ import {
 } from './style'
 
 const Sidebar = () => {
-  const { files, createNewFile } = useGlobalContent()
+  const { files, createNewFile, selectFile } = useGlobalContent()
 
   let currentStatus = ''
 
   const getStatus = (status: string) => {
     if (status === 'saved') {
-      currentStatus = './images/check.svg'
-    } else if (status === 'saving') {
-      currentStatus = './images/loading.svg'
-    } else if (status === 'editing') {
       currentStatus = './images/dot.svg'
+    } else if (status === 'saving') {
+      currentStatus = './images/check.svg'
+    } else if (status === 'editing') {
+      currentStatus = './images/loading.svg'
     }
   }
   return (
@@ -44,7 +44,7 @@ const Sidebar = () => {
             getStatus(item.status),
             item.active
               ? <List className='active' key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
-              : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
+              : <List onClick={selectFile(item.id)} key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }
       </ul>
