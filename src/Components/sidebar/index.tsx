@@ -1,6 +1,5 @@
-import { useState, RefObject } from 'react'
 import { File } from '@styled-icons/boxicons-regular/File'
-import { v4 as idv4 } from 'uuid'
+import { useGlobalContent } from '../../Providers/ContentContext'
 
 import {
   Container,
@@ -16,20 +15,9 @@ import {
   DeleteButton,
 } from './style'
 
-type TypeFile = {
-  id: string
-  name: string
-  content: string
-  active: boolean
-  status: string
-}
+const Sidebar = () => {
+  const { files, createNewFile } = useGlobalContent()
 
-type SidebarProps = {
-  inputRef: RefObject<HTMLInputElement>
-}
-
-const Sidebar = ({ inputRef }: SidebarProps) => {
-  const [files, setFiles] = useState<TypeFile[]>([])
   let currentStatus = ''
 
   const getStatus = (status: string) => {
@@ -41,23 +29,6 @@ const Sidebar = ({ inputRef }: SidebarProps) => {
       currentStatus = './images/dot.svg'
     }
   }
-
-  const createNewFile = () => {
-    inputRef.current?.focus()
-    setFiles(files => files
-      .map(item => ({
-        ...item,
-        active: false,
-      }))
-      .concat({
-        id: idv4(),
-        name: 'Sem título',
-        content: '',
-        active: true,
-        status: 'saved',
-      }))
-  }
-
   return (
     <Container>
       <Header>
@@ -72,7 +43,7 @@ const Sidebar = ({ inputRef }: SidebarProps) => {
             // eslint-disable-next-line no-sequences
             getStatus(item.status),
             item.active
-              ? <List className='active' key={item.id}><Anchor href='/'><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
+              ? <List className='active' key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
               : <List key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }

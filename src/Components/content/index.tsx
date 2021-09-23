@@ -1,4 +1,5 @@
-import { useState, ChangeEvent, RefObject } from 'react'
+import { useState, ChangeEvent } from 'react'
+import { useGlobalContent } from '../../Providers/ContentContext'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
@@ -25,13 +26,9 @@ import('highlight.js').then(hljs => {
   })
 })
 
-type ContentRef = {
-  inputRef: RefObject<HTMLInputElement>
-}
-
-const Content = ({ inputRef }: ContentRef) => {
+const Content = () => {
   const [content, setContent] = useState('')
-
+  const { inputRef } = useGlobalContent()
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value)
   }
@@ -40,7 +37,7 @@ const Content = ({ inputRef }: ContentRef) => {
     <Container>
       <Header>
         <File className='iconFile' />
-        <InputTitle placeholder='Sem título' ref={inputRef} />
+        <InputTitle placeholder='Digite o título' ref={inputRef} />
       </Header>
       <MainContainer>
         <TexteareaContainer

@@ -1,7 +1,6 @@
-import { useRef } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from 'resources/theme'
-import GlobalStyled from 'app-style'
+import GlobalStyled from 'globalStyle'
 import Asidebar from 'Components/sidebar'
 import Content from 'Components/content'
 
@@ -10,13 +9,12 @@ display: flex;
 `
 
 const App = () => {
-  const inputRef = useRef<HTMLInputElement>(null)
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <GlobalStyled />
-        <Asidebar inputRef={inputRef} />
-        <Content inputRef={inputRef} />
+        <Asidebar />
+        <Content />
       </Container>
     </ThemeProvider>
   )
