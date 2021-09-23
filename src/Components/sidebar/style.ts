@@ -100,7 +100,7 @@ export const List = styled.li`${({ theme }) => css`
         visibility: visible;
       }
     }
-  .saving{
+  .editing{
     margin-right: -10px;
     display: inline-block;
     animation: ${rotate} 1s linear infinite;

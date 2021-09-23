@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import { useGlobalContent } from '../../Providers/ContentContext'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
@@ -26,26 +26,31 @@ import('highlight.js').then(hljs => {
 })
 
 const Content = () => {
-  const [content, setContent] = useState('')
-
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(event.target.value)
-  }
+  const { files, inputRef, updateFileName, updateFileContent } = useGlobalContent()
 
   return (
     <Container>
-      <Header>
-        <File className='iconFile' />
-        <InputTitle placeholder='Sem título' />
-      </Header>
-      <MainContainer>
-        <TexteareaContainer
-          placeholder='Digite aqui seu markedown'
-          value={content}
-          onChange={handleChange}
-        />
-        <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(content) }} />
-      </MainContainer>
+      {files.map(item => (
+        item.active &&
+          <>
+            <Header>
+              <File className='iconFile' />
+              <InputTitle
+                value={item.name}
+                onChange={updateFileName(item.id)}
+                ref={inputRef}
+              />
+            </Header>
+            <MainContainer>
+              <TexteareaContainer
+                placeholder='Digite aqui seu markedown'
+                value={item.content}
+                onChange={updateFileContent(item.id)}
+              />
+              <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(item.content) }} />
+            </MainContainer>
+          </>
+      ))}
     </Container>
   )
 }
