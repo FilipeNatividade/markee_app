@@ -2,8 +2,6 @@ import {
   createContext,
   useContext,
   useState,
-  RefObject,
-  useRef,
   ReactNode,
   SetStateAction,
   Dispatch,
@@ -28,7 +26,6 @@ type TypeCreate = {
   contentFile: string
   setContentFile: Dispatch<SetStateAction<string>>
   createNewFile: any
-  inputRef: RefObject<HTMLInputElement>
   selectFile: any
   deleteFile: any
   updateFileName: any
@@ -46,8 +43,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
   const [files, setFiles] = useState<TypeFile[]>([])
   const [titleFile, setTitleFile] = useState<string>('')
   const [contentFile, setContentFile] = useState<string>('')
-
-  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
@@ -136,7 +131,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
 
   const selectFile = (id: string) => {
     setFiles(files => files.map(item => {
-      console.log(item)
       if (item.id === id) {
         return {
           ...item,
@@ -163,7 +157,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
         setTitleFile,
         contentFile,
         setContentFile,
-        inputRef,
         createNewFile,
         updateFileName,
         updateFileContent,
