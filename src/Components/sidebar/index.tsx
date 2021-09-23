@@ -16,7 +16,7 @@ import {
 } from './style'
 
 const Sidebar = () => {
-  const { files, createNewFile, selectFile } = useGlobalContent()
+  const { files, createNewFile, selectFile, deleteFile } = useGlobalContent()
 
   let currentStatus = ''
 
@@ -31,10 +31,12 @@ const Sidebar = () => {
   }
   return (
     <Container>
-      <Header>
-        <ImageHeader src='./images/logo192.png' alt='logo' />
-        <Title>markee<span>.</span></Title>
-      </Header>
+      <a href='/'>
+        <Header>
+          <ImageHeader src='./images/logo192.png' alt='logo' />
+          <Title>markee<span>.</span></Title>
+        </Header>
+      </a>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
       <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>
       <ul>
@@ -43,8 +45,8 @@ const Sidebar = () => {
             // eslint-disable-next-line no-sequences
             getStatus(item.status),
             item.active
-              ? <List className='active' key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={currentStatus} className={item.status} /></List>
-              : <List onClick={selectFile(item.id)} key={item.id}><Anchor href='/'><File className='iconFile' />{item.name}</Anchor><DeleteButton title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
+              ? <List className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={item.status} className={item.status} /></List>
+              : <List onClick={() => selectFile(item.id)} key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }
       </ul>

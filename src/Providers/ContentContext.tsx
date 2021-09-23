@@ -33,8 +33,11 @@ const ContentContext = createContext<TypeCreate>({} as TypeCreate)
 
 export const GlobalProvider = ({ children }: TypeChildren) => {
   const [files, setFiles] = useState<TypeFile[]>([])
+  console.log(files)
   const [titleFile, setTitleFile] = useState<string>('')
   const [contentFile, setContentFile] = useState<string>('')
+
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
@@ -48,13 +51,13 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
 
       timer = setTimeout(() => {
         setFiles(files => files.map(item => {
-          if (file.active) {
+          if (item.active) {
             return {
               ...item,
               status: 'saving',
             }
           }
-          return file
+          return item
         }))
 
         setTimeout(() => {
@@ -66,7 +69,7 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
               }
             }
 
-            return file
+            return item
           }))
         }, 300)
       }, 300)
@@ -75,8 +78,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
     updateSutatus()
     return () => clearTimeout(timer)
   }, [files])
-
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const createNewFile = () => {
     inputRef.current?.focus()
@@ -117,25 +118,35 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
           status: 'editing',
         }
       }
-
-      return item
+      return {
+        ...item,
+        active: false,
+      }
     }))
   }
 
-  const selectFile = (id: string) => (event: MouseEvent) => {
-    event.preventDefault()
-
+  const selectFile = (id: string) => {
     inputRef.current?.focus()
 
-    setFiles(files => files.map(item => ({
-      ...item,
-      active: item.id === id,
-    })))
+    setFiles(files => files.map(item => {
+      console.log(item)
+      if (item.id === id) {
+        return {
+          ...item,
+          active: true,
+        }
+      }
+      return {
+        ...item,
+        active: false,
+      }
+    }))
   }
 
   const deleteFile = (id: string) => {
     setFiles(files => files.filter(item => item.id !== id))
   }
+
   return (
     <ContentContext.Provider
       value={{
@@ -145,12 +156,12 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
         setTitleFile,
         contentFile,
         setContentFile,
-        createNewFile,
         inputRef,
-        selectFile,
-        deleteFile,
+        createNewFile,
         updateFileName,
         updateFileContent,
+        selectFile,
+        deleteFile,
       }}
     >
       {children}
