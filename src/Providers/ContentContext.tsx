@@ -44,7 +44,6 @@ const ContentContext = createContext<TypeCreate>({} as TypeCreate)
 
 export const GlobalProvider = ({ children }: TypeChildren) => {
   const [files, setFiles] = useState<TypeFile[]>([])
-  console.log(files)
   const [titleFile, setTitleFile] = useState<string>('')
   const [contentFile, setContentFile] = useState<string>('')
 
@@ -91,7 +90,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
   }, [files])
 
   const createNewFile = () => {
-    inputRef.current?.focus()
     setFiles(files => files
       .map(item => ({
         ...item,
@@ -137,8 +135,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
   }
 
   const selectFile = (id: string) => {
-    inputRef.current?.focus()
-
     setFiles(files => files.map(item => {
       console.log(item)
       if (item.id === id) {
