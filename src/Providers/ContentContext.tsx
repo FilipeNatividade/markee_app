@@ -89,6 +89,15 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
     localforage.setItem('myMarkeedown', files)
   }, [files])
 
+  useEffect(() => {
+    const getFileStorage = async () => {
+      const fileStorage = await localforage.getItem<TypeFile[]>('myMarkeedown')
+
+      fileStorage ? setFiles(fileStorage) : createNewFile()
+    }
+    getFileStorage()
+  }, [])
+
   const createNewFile = () => {
     setFiles(files => files
       .map(item => ({
