@@ -1,3 +1,4 @@
+import localforage from 'localforage'
 import {
   createContext,
   useContext,
@@ -82,6 +83,10 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
 
     updateSutatus()
     return () => clearTimeout(timer)
+  }, [files])
+
+  useEffect(() => {
+    localforage.setItem('myMarkeedown', files)
   }, [files])
 
   const createNewFile = () => {
