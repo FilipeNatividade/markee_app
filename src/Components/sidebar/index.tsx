@@ -3,8 +3,6 @@ import { useGlobalContent } from '../../Providers/ContentContext'
 
 import {
   Container,
-  Title,
-  Header,
   ImageHeader,
   SubTitle,
   ParagraphSubTitle,
@@ -33,10 +31,7 @@ const Sidebar = () => {
   return (
     <Container>
       <a href='/'>
-        <Header>
-          <ImageHeader src='./images/logo192.png' alt='logo' />
-          <Title>markee<span>.</span></Title>
-        </Header>
+          <ImageHeader src='./images/logo_name.svg' alt='logo' />
       </a>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
       <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>

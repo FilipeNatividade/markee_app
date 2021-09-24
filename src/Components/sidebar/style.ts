@@ -21,26 +21,10 @@ export const Container = styled.aside`${({ theme }) => css`
   }
 `}`
 
-export const Header = styled.header`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 45px 0;
-`
-
 export const ImageHeader = styled.img`
-  margin-right: 15px;
-  width: 35px;
+  margin: 45px auto;
+  width: 90%;
 `
-
-export const Title = styled.h1`${({ theme }) => css`
-  font-size: 3rem;
-  color: ${theme.colors.white};
-  span{
-    color: ${theme.colors.primary};
-  }
-`}`
-
 export const SubTitle = styled.div`
   align-items: center;
   display: flex;
