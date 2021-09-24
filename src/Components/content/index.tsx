@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { useGlobalContent } from '../../Providers/ContentContext'
+import { useGlobalContent } from '../../Providers/content-context/ContentContext'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'

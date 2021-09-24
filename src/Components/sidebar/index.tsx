@@ -1,5 +1,5 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { useGlobalContent } from '../../Providers/ContentContext'
+import { useGlobalContent } from '../../Providers/content-context/ContentContext'
 
 import {
   Container,
@@ -18,15 +18,13 @@ import {
 const Sidebar = () => {
   const { files, createNewFile, selectFile, deleteFile } = useGlobalContent()
 
-  let currentStatus = ''
-
   const getStatus = (status: string) => {
     if (status === 'saving') {
-      currentStatus = './images/loading.svg'
+      return './images/loading.svg'
     } else if (status === 'saved') {
-      currentStatus = './images/check.svg'
+      return './images/check.svg'
     } else if (status === 'editing') {
-      currentStatus = './images/dot.svg'
+      return './images/dot.svg'
     }
   }
 
@@ -46,7 +44,7 @@ const Sidebar = () => {
             // eslint-disable-next-line no-sequences
             getStatus(item.status),
             item.active
-              ? <List className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={item.status} className={item.status} /></List>
+              ? <List className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={getStatus(item.status)} alt={item.status} className={item.status} /></List>
               : <List><Anchor onClick={e => { e.preventDefault(); selectFile(item.id); window.history.pushState(null, '', `/${item.id}`) }}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }

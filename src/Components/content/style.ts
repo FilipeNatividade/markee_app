@@ -18,6 +18,7 @@ export const Header = styled.header`
 `
 
 export const InputTitle = styled.input`
+
   font-size: 1.8rem;
   font-weight: 500;
   font-family: 'DM sans';
@@ -26,6 +27,7 @@ export const InputTitle = styled.input`
 `
 export const MainContainer = styled.main`
   display: flex;
+  flex-wrap: wrap;
   font-size: 1.8rem;
   font-weight: 500;
   font-family: 'DM sans';

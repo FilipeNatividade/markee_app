@@ -15,7 +15,7 @@ export const Container = styled.aside`${({ theme }) => css`
   color: ${theme.colors.primary};
   min-height: 100vh;
   padding: 0 32px;
-  width: 335px;
+  width: 332px;
   .active{
     background-color: ${theme.colors.lightBlack};
   }
@@ -111,6 +111,9 @@ export const List = styled.li`${({ theme }) => css`
 
 export const Anchor = styled.a`
   color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const DeleteButton = styled.button`

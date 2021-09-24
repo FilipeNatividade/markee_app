@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { GlobalProvider } from './ContentContext'
+import { GlobalProvider } from './content-context/ContentContext'
 
 type TypeChildren = {
   children: ReactNode | ReactNode[]
