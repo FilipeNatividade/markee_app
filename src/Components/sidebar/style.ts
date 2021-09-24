@@ -11,6 +11,7 @@ const rotate = keyframes`
 `
 
 export const Container = styled.aside`${({ theme }) => css`
+display: none;
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
   min-height: 100vh;

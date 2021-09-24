@@ -24,10 +24,6 @@ type TypeFile = {
 type TypeCreate = {
   files: TypeFile[]
   setFiles: Dispatch<SetStateAction<TypeFile[]>>
-  titleFile: string
-  setTitleFile: Dispatch<SetStateAction<string>>
-  contentFile: string
-  setContentFile: Dispatch<SetStateAction<string>>
   inputRef: RefObject<HTMLInputElement>
   createNewFile: any
   selectFile: any
@@ -46,8 +42,6 @@ const ContentContext = createContext<TypeCreate>({} as TypeCreate)
 export const GlobalProvider = ({ children }: TypeChildren) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<TypeFile[]>([])
-  const [titleFile, setTitleFile] = useState<string>('')
-  const [contentFile, setContentFile] = useState<string>('')
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
@@ -119,7 +113,8 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
       }))
   }
 
-  const updateFileName = (id: string) => (event: ChangeEvent<HTMLInputElement>) => {
+  const updateFileName = (event: ChangeEvent<HTMLInputElement>, id: string) => {
+    event.preventDefault()
     setFiles(files => files.map(item => {
       if (item.id === id) {
         return {
@@ -132,7 +127,9 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
     }))
   }
 
-  const updateFileContent = (id: string) => (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const updateFileContent = (event: ChangeEvent<HTMLTextAreaElement>, id: string) => {
+    event.preventDefault()
+
     setFiles(files => files.map(item => {
       if (item.id === id) {
         return {
@@ -171,10 +168,6 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
       value={{
         files,
         setFiles,
-        titleFile,
-        setTitleFile,
-        contentFile,
-        setContentFile,
         inputRef,
         createNewFile,
         updateFileName,

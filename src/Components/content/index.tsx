@@ -1,9 +1,7 @@
-import { Fragment } from 'react'
 import { useGlobalContent } from '../../Providers/content-context/ContentContext'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
-import { v4 as idv4 } from 'uuid'
 
 import {
   Container,
@@ -29,31 +27,31 @@ import('highlight.js').then(hljs => {
 
 const Content = () => {
   const { files, updateFileName, updateFileContent, inputRef } = useGlobalContent()
+  const file = files.find(item => item.active === true)
+  console.log(file?.name)
 
+  if (!file) {
+    return null
+  }
   return (
     <Container>
-      {files.map(item => (
-        item.active &&
-          <Fragment key={idv4()}>
-            <Header>
-              <File className='iconFile' />
-              <InputTitle
-                ref={inputRef}
-                value={item.name}
-                onChange={updateFileName(item.id)}
-                autoFocus
-              />
-            </Header>
-            <MainContainer>
-              <TexteareaContainer
-                placeholder='Digite aqui seu markedown'
-                value={item.content}
-                onChange={updateFileContent(item.id)}
-              />
-              <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(item.content) }} />
-            </MainContainer>
-          </Fragment>
-      ))}
+      <Header>
+        <File className='iconFile' />
+        <InputTitle
+          ref={inputRef}
+          value={file.name}
+          onChange={event => updateFileName(event, file.id)}
+          autoFocus
+        />
+      </Header>
+      <MainContainer>
+        <TexteareaContainer
+          placeholder='Digite aqui seu markedown'
+          value={file.content}
+          onChange={(event) => updateFileContent(event, file.id)}
+        />
+        <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(file.content) }} />
+      </MainContainer>
     </Container>
   )
 }

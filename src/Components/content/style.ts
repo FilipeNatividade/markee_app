@@ -18,7 +18,6 @@ export const Header = styled.header`
 `
 
 export const InputTitle = styled.input`
-
   font-size: 1.8rem;
   font-weight: 500;
   font-family: 'DM sans';
@@ -27,29 +26,43 @@ export const InputTitle = styled.input`
 `
 export const MainContainer = styled.main`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   font-size: 1.8rem;
   font-weight: 500;
   font-family: 'DM sans';
   line-height: 19px;
   min-height: 90%;
   margin-top: 32px;
+  @media only screen and (min-width:400px) {
+    flex-direction: row;
+
+  }
 `
 
 export const TexteareaContainer = styled.textarea`
   border: none;
-  border: 1px solid red;
   font-family: 'Incosolata';
   font-size: 1.8rem;
+  min-height: 40vh;
   resize: none;
   outline: none;
-  width: 50%;
+  width: 100%;
+  @media only screen and (min-width:400px) {
+    width: 50%;
+  }
 `
 
 export const MarkedownContainer = styled.div`${({ theme }) => css`
-  border-left:2px solid ${theme.colors.gray} ;
+  border-top:2px solid ${theme.colors.gray} ;
   color: ${theme.colors.black};
   font-size: 1.6rem;
+  line-height: 3rem;
+  min-height: 40vh;
   padding-left: 32px;
-  width: 50%;
+  width: 100%;
+  @media only screen and (min-width:400px) {
+    border: none;
+    border-left:2px solid ${theme.colors.gray} ;
+    width: 50%;
+  }
 `}`

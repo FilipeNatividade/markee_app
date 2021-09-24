@@ -41,8 +41,6 @@ const Sidebar = () => {
       <ul>
         {
           files.map(item => (
-            // eslint-disable-next-line no-sequences
-            getStatus(item.status),
             item.active
               ? <List className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={getStatus(item.status)} alt={item.status} className={item.status} /></List>
               : <List key={item.id}><Anchor onClick={e => { e.preventDefault(); selectFile(item.id); window.history.pushState(null, '', `/${item.id}`) }}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
