@@ -28,7 +28,7 @@ import('highlight.js').then(hljs => {
 })
 
 const Content = () => {
-  const { files, updateFileName, updateFileContent } = useGlobalContent()
+  const { files, updateFileName, updateFileContent, inputRef } = useGlobalContent()
 
   return (
     <Container>
@@ -38,6 +38,7 @@ const Content = () => {
             <Header>
               <File className='iconFile' />
               <InputTitle
+                ref={inputRef}
                 value={item.name}
                 onChange={updateFileName(item.id)}
                 autoFocus

@@ -38,6 +38,7 @@ export const MainContainer = styled.main`
 
 export const TexteareaContainer = styled.textarea`
   border: none;
+  border: 1px solid red;
   font-family: 'Incosolata';
   font-size: 1.8rem;
   resize: none;
