@@ -1,7 +1,9 @@
+import { Fragment } from 'react'
 import { useGlobalContent } from '../../Providers/ContentContext'
 import marked from 'marked'
 import 'highlight.js/styles/vs.css'
 import { File } from '@styled-icons/boxicons-regular/File'
+import { v4 as idv4 } from 'uuid'
 
 import {
   Container,
@@ -32,7 +34,7 @@ const Content = () => {
     <Container>
       {files.map(item => (
         item.active &&
-          <>
+          <Fragment key={idv4()}>
             <Header>
               <File className='iconFile' />
               <InputTitle
@@ -49,7 +51,7 @@ const Content = () => {
               />
               <MarkedownContainer dangerouslySetInnerHTML={{ __html: marked(item.content) }} />
             </MainContainer>
-          </>
+          </Fragment>
       ))}
     </Container>
   )
