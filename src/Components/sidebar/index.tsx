@@ -21,9 +21,9 @@ const Sidebar = () => {
   let currentStatus = ''
 
   const getStatus = (status: string) => {
-    if (status === 'saved') {
+    if (status === 'saveng') {
       currentStatus = './images/dot.svg'
-    } else if (status === 'saving') {
+    } else if (status === 'saved') {
       currentStatus = './images/check.svg'
     } else if (status === 'editing') {
       currentStatus = './images/loading.svg'
