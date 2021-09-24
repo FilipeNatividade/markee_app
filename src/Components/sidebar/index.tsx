@@ -30,6 +30,12 @@ const Sidebar = () => {
     }
   }
 
+  // const handleHistoryRoute = (id: string) => (event: MouseEvent) => {
+  //   event.preventDefault()
+  //   selectFile(id)
+  //   window.history.pushState(null, '', `/${id}`)
+  // }
+
   return (
     <Container>
       <a href='/'>
@@ -47,7 +53,7 @@ const Sidebar = () => {
             getStatus(item.status),
             item.active
               ? <List className='active' key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={item.status} className={item.status} /></List>
-              : <List onClick={() => selectFile(item.id)} key={item.id}><Anchor href={`/${item.id}`}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
+              : <List key={item.id}><Anchor onClick={() => selectFile(item.id)} href={`/${item.id}`}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
           ))
         }
       </ul>
