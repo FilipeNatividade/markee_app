@@ -31,7 +31,7 @@ const Sidebar = () => {
   return (
     <Container>
       <a href='/'>
-          <ImageHeader src='./images/logo_name.svg' alt='logo' />
+        <ImageHeader src='./images/logo_name.svg' alt='logo' />
       </a>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
       <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>
