@@ -46,7 +46,7 @@ const Content = () => {
       </Header>
       <MainContainer>
         <TexteareaContainer
-          placeholder='Digite aqui seu markedown'
+          placeholder='Digite aqui seu markdown'
           value={file.content}
           onChange={(event) => updateFileContent(event, file.id)}
         />
