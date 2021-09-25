@@ -1,4 +1,3 @@
-import { Dispatch } from 'react'
 import styled, { css, keyframes } from 'styled-components/macro'
 
 const rotate = keyframes`
@@ -12,7 +11,6 @@ const rotate = keyframes`
 `
 
 export const Container = styled.aside`${({ theme }) => css`
-/* display: none; */
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
   padding: 0 32px;
