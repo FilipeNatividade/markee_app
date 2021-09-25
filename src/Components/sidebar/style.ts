@@ -1,4 +1,3 @@
-import { Dispatch } from 'react'
 import styled, { css, keyframes } from 'styled-components/macro'
 
 const rotate = keyframes`
@@ -12,7 +11,6 @@ const rotate = keyframes`
 `
 
 export const Container = styled.aside`${({ theme }) => css`
-/* display: none; */
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
   padding: 0 32px;
@@ -68,6 +66,9 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 0;
+  @media only screen and (min-width:750px) {
+   justify-content: center;
+  }
 `
 
 export const ButtonMenu = styled.button`${({ theme }) => css`
@@ -95,7 +96,7 @@ export const ButtonAdd = styled.button`${({ theme }) => css`
   }
 `}`
 
-export const MenuDesktop = styled.ul`
+export const MenuDesktop = styled.div`
   display: none;
   @media only screen and (min-width:750px) {
     display: block;
@@ -103,7 +104,10 @@ export const MenuDesktop = styled.ul`
 `
 
 export const List = styled.ul`
+  align-items: center;
   background-color: rgba(30,41,59,.9);
+  display: flex;
+  flex-direction: column;
   margin-left: -32px;
   position: absolute;
   width: 236px;
@@ -112,7 +116,7 @@ export const List = styled.ul`
     min-height: 100vh;
     margin-left: 0;
     position: relative;
-    width: 250px;
+    width: 100%;
     z-index: 0;
   }
 `
@@ -125,6 +129,7 @@ export const ListItem = styled.li`${({ theme }) => css`
   justify-content: space-between;
   list-style: none;
   margin-bottom: 10px;
+  max-width: 235px;
   padding: 0 15px;
   width: 100%;
   .iconFile{

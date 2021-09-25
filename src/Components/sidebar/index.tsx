@@ -1,6 +1,6 @@
 import { File } from '@styled-icons/boxicons-regular/File'
 import { Menu } from '@styled-icons/boxicons-regular/Menu'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { useGlobalContent } from '../../Providers/content-context/ContentContext'
 
 import {
