@@ -1,3 +1,4 @@
+import { Dispatch } from 'react'
 import styled, { css, keyframes } from 'styled-components/macro'
 
 const rotate = keyframes`
@@ -11,13 +12,17 @@ const rotate = keyframes`
 `
 
 export const Container = styled.aside`${({ theme }) => css`
+/* display: none; */
   background-color: ${theme.colors.black};
   color: ${theme.colors.primary};
-  min-height: 100vh;
   padding: 0 32px;
-  width: 335px;
+  width: 100%;
   .active{
     background-color: ${theme.colors.lightBlack};
+  }
+  @media only screen and (min-width:750px) {
+    min-height: 100vh;
+    width: 400px;
   }
 `}`
 
@@ -25,21 +30,15 @@ export const Header = styled.header`
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: 45px 0;
+  padding: 20px 0;
+  @media only screen and (min-width:750px) {
+    padding: 45px 0;
+  }
 `
 
 export const ImageHeader = styled.img`
-  margin-right: 15px;
-  width: 35px;
+  width: 90%;
 `
-
-export const Title = styled.h1`${({ theme }) => css`
-  font-size: 3rem;
-  color: ${theme.colors.white};
-  span{
-    color: ${theme.colors.primary};
-  }
-`}`
 
 export const SubTitle = styled.div`
   align-items: center;
@@ -64,16 +63,60 @@ export const HRow = styled.hr`${({ theme }) => css`
   background-color: ${theme.colors.primary};
 `}`
 
+export const ButtonContainer = styled.div`
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+`
+
+export const ButtonMenu = styled.button`${({ theme }) => css`
+  background-color: transparent;
+  height:33px;
+  .menu{
+    color: ${theme.colors.primary};
+    margin-right: 20px;
+    width: 33px;
+  }
+  @media only screen and (min-width:750px) {
+    display: none;
+  }
+`}
+`
 export const ButtonAdd = styled.button`${({ theme }) => css`
   background-color: ${theme.colors.primary};
   border-radius: 5px;
   color: ${theme.colors.black};
   height:33px ;
-  margin: 32px auto;
+  max-width: 236px;
   width: 100%;
+  @media only screen and (min-width:750px) {
+    margin: 32px auto;
+  }
 `}`
 
-export const List = styled.li`${({ theme }) => css`
+export const MenuDesktop = styled.ul`
+  display: none;
+  @media only screen and (min-width:750px) {
+    display: block;
+  }
+`
+
+export const List = styled.ul`
+  background-color: rgba(30,41,59,.9);
+  margin-left: -32px;
+  position: absolute;
+  width: 236px;
+  z-index: 1;
+  @media only screen and (min-width:750px) {
+    min-height: 100vh;
+    margin-left: 0;
+    position: relative;
+    width: 250px;
+    z-index: 0;
+  }
+`
+export const ListItem = styled.li`${({ theme }) => css`
   align-items: center;
   border-radius: 5px;
   display: flex;
@@ -111,10 +154,15 @@ export const List = styled.li`${({ theme }) => css`
 
 export const Anchor = styled.a`
   color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const DeleteButton = styled.button`
-  visibility:hidden;
   background-color:transparent;
   color: #fff;
+  @media only screen and (min-width:750px) {
+    visibility:hidden;
+  }
 `

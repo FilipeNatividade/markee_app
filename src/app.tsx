@@ -5,7 +5,11 @@ import Asidebar from 'Components/sidebar'
 import Content from 'Components/content'
 
 const Container = styled.div`
-display: flex;
+  display: flex;
+  flex-direction: column;
+  @media only screen and (min-width:750px) {
+    flex-direction: row;
+    }
 `
 
 const App = () => {

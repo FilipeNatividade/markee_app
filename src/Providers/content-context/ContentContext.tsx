@@ -7,6 +7,8 @@ import {
   SetStateAction,
   Dispatch,
   useEffect,
+  useRef,
+  RefObject,
   ChangeEvent,
 } from 'react'
 import { v4 as idv4 } from 'uuid'
@@ -22,10 +24,7 @@ type TypeFile = {
 type TypeCreate = {
   files: TypeFile[]
   setFiles: Dispatch<SetStateAction<TypeFile[]>>
-  titleFile: string
-  setTitleFile: Dispatch<SetStateAction<string>>
-  contentFile: string
-  setContentFile: Dispatch<SetStateAction<string>>
+  inputRef: RefObject<HTMLInputElement>
   createNewFile: any
   selectFile: any
   deleteFile: any
@@ -41,9 +40,8 @@ type TypeChildren = {
 const ContentContext = createContext<TypeCreate>({} as TypeCreate)
 
 export const GlobalProvider = ({ children }: TypeChildren) => {
+  const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<TypeFile[]>([])
-  const [titleFile, setTitleFile] = useState<string>('')
-  const [contentFile, setContentFile] = useState<string>('')
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
@@ -99,6 +97,8 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
   }, [])
 
   const createNewFile = () => {
+    inputRef.current?.focus()
+
     setFiles(files => files
       .map(item => ({
         ...item,
@@ -113,37 +113,38 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
       }))
   }
 
-  const updateFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
+  const updateFileName = (event: ChangeEvent<HTMLInputElement>, id: string) => {
+    event.preventDefault()
     setFiles(files => files.map(item => {
       if (item.id === id) {
         return {
           ...item,
-          name: e.target.value,
+          name: event.target.value,
           status: 'editing',
         }
       }
-
       return item
     }))
   }
 
-  const updateFileContent = (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const updateFileContent = (event: ChangeEvent<HTMLTextAreaElement>, id: string) => {
+    event.preventDefault()
+
     setFiles(files => files.map(item => {
       if (item.id === id) {
         return {
           ...item,
-          content: e.target.value,
+          content: event.target.value,
           status: 'editing',
         }
       }
-      return {
-        ...item,
-        active: false,
-      }
+      return item
     }))
   }
 
   const selectFile = (id: string) => {
+    inputRef.current?.focus()
+
     setFiles(files => files.map(item => {
       if (item.id === id) {
         return {
@@ -167,10 +168,7 @@ export const GlobalProvider = ({ children }: TypeChildren) => {
       value={{
         files,
         setFiles,
-        titleFile,
-        setTitleFile,
-        contentFile,
-        setContentFile,
+        inputRef,
         createNewFile,
         updateFileName,
         updateFileContent,

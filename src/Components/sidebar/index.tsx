@@ -1,56 +1,75 @@
 import { File } from '@styled-icons/boxicons-regular/File'
-import { useGlobalContent } from '../../Providers/ContentContext'
+import { Menu } from '@styled-icons/boxicons-regular/Menu'
+import { Fragment, useState } from 'react'
+import { useGlobalContent } from '../../Providers/content-context/ContentContext'
 
 import {
   Container,
-  Title,
   Header,
   ImageHeader,
   SubTitle,
   ParagraphSubTitle,
   HRow,
+  ButtonContainer,
+  ButtonMenu,
   ButtonAdd,
+  MenuDesktop,
   List,
+  ListItem,
   Anchor,
   DeleteButton,
 } from './style'
 
 const Sidebar = () => {
   const { files, createNewFile, selectFile, deleteFile } = useGlobalContent()
-
-  let currentStatus = ''
+  const [stateMenu, setStateMenu] = useState(false)
 
   const getStatus = (status: string) => {
     if (status === 'saving') {
-      currentStatus = './images/loading.svg'
+      return './images/loading.svg'
     } else if (status === 'saved') {
-      currentStatus = './images/check.svg'
+      return './images/check.svg'
     } else if (status === 'editing') {
-      currentStatus = './images/dot.svg'
+      return './images/dot.svg'
     }
+  }
+
+  const showMenuMobile = () => {
+    setStateMenu(!stateMenu)
   }
 
   return (
     <Container>
-      <a href='/'>
-        <Header>
-          <ImageHeader src='./images/logo192.png' alt='logo' />
-          <Title>markee<span>.</span></Title>
-        </Header>
-      </a>
+      <Header>
+        <ImageHeader src='./images/logo_name.svg' alt='logo' />
+      </Header>
       <SubTitle><HRow /><ParagraphSubTitle>Arquivos</ParagraphSubTitle></SubTitle>
-      <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>
-      <ul>
-        {
-          files.map(item => (
-            // eslint-disable-next-line no-sequences
-            getStatus(item.status),
-            item.active
-              ? <List className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={currentStatus} alt={item.status} className={item.status} /></List>
-              : <List><Anchor onClick={e => { e.preventDefault(); selectFile(item.id); window.history.pushState(null, '', `/${item.id}`) }}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></List>
-          ))
-        }
-      </ul>
+      <ButtonContainer>
+        <ButtonMenu onClick={showMenuMobile}><Menu className='menu' /></ButtonMenu> <ButtonAdd onClick={createNewFile}>+ Adicionar arquivo</ButtonAdd>
+      </ButtonContainer>
+      {
+        stateMenu &&
+          <List>
+            {
+              files.map(item => (
+                item.active
+                  ? <ListItem className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={getStatus(item.status)} alt={item.status} className={item.status} /></ListItem>
+                  : <ListItem key={item.id}><Anchor onClick={e => { e.preventDefault(); selectFile(item.id); window.history.pushState(null, '', `/${item.id}`) }}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></ListItem>
+              ))
+            }
+          </List>
+      }
+      <MenuDesktop>
+        <List>
+          {
+            files.map(item => (
+              item.active
+                ? <ListItem className='active' key={item.id}><Anchor><File className='iconFile iconFileActive' />{item.name}</Anchor><img src={getStatus(item.status)} alt={item.status} className={item.status} /></ListItem>
+                : <ListItem key={item.id}><Anchor onClick={e => { e.preventDefault(); selectFile(item.id); window.history.pushState(null, '', `/${item.id}`) }}><File className='iconFile' />{item.name}</Anchor><DeleteButton onClick={() => deleteFile(item.id)} title={`Remover aquivo ${item.name}`}>X</DeleteButton></ListItem>
+            ))
+          }
+        </List>
+      </MenuDesktop>
     </Container>
   )
 }
