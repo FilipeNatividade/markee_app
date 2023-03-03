@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-"yarn lint:fix && yarn type-check"
-"./node_modules/.bin/yarn lint:fix && ./node_modules/.bin/yarn type-check."
+yarn lint:fix && yarn type-check
+
 # "npm run lint && npm run test"
